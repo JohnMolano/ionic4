@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Ionic Prueba
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="auth-form">
+  <ion-grid>
+    <ion-row>
+      <ion-col align-self-center>
+        <ion-content class="ion-padding">
+          <h1>Hi {{currentUser.firstName}}!</h1>
+          <h4>Booking User:</h4>
+          <form [formGroup]="Form">
+            <ion-item>
+              <ion-label>Choose your type search</ion-label>
+              <ion-select placeholder="Select One" formControlName="type" (ionChange)="onTypeChange();">
+                <ion-select-option value="Like">Like</ion-select-option>
+                <ion-select-option value="Greater than">Greater than</ion-select-option>
+                <ion-select-option value="Smaller than">Smaller than</ion-select-option>
+              </ion-select>
+            </ion-item>
+
+            <ion-item lines="full">
+              <ion-label position="floating">Search by bookingId or by bookingPrice:</ion-label>
+              <ion-input type="text" formControlName="search" (keyup)="onSearchChange();" required></ion-input>
+            </ion-item>
+          </form>
+          <ion-list no-lines  *ngFor="let booking of userBookings" >
+            <ion-item>
+              bookingId: {{booking.bookingId}}
+              bookingPrice: {{booking.bookingPrice}}
+              firstName: {{booking.tutenUserClient.firstName}}
+              bookingTime: {{booking.bookingTime}}
+              streetAddress: {{booking.locationId.streetAddress}}
+            </ion-item> 
+          </ion-list>
+        </ion-content>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
